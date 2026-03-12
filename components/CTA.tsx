@@ -126,7 +126,7 @@ export default function CTA() {
 
                     </form>
 
-                    <p className="text-white/40 text-[10px] md:text-xs font-bold tracking-widest uppercase mt-4 md:mt-0">hello@05rpm.studio</p>
+                    <p className="text-white/40 text-[10px] md:text-xs font-bold tracking-widest uppercase mt-4 md:mt-0">05rpm.studio@gmail.com</p>
                 </div>
 
             </div>

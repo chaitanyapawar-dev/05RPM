@@ -46,7 +46,7 @@ export default function Nav() {
                 </ul>
                 <div className="mt-20 text-center">
                     <p className="font-sans text-[10px] uppercase tracking-widest text-muted mb-2">Nagpur, India</p>
-                    <a onClick={handleLinkClick} className="text-cherry font-bold text-sm" href="mailto:hello@05rpm.studio">hello@05rpm.studio</a>
+                    <a onClick={handleLinkClick} className="text-cherry font-bold text-sm" href="mailto:05rpm.studio@gmail.com">05rpm.studio@gmail.com</a>
                 </div>
             </div>
         </>
