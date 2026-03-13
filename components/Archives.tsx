@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import Image from 'next/image'
 import Vinyl from '@/components/ui/Vinyl'
 
 export interface CaseStudyType {
@@ -182,11 +183,14 @@ export default function Archives() {
                     mobileExpanded === track.id ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
                   }`}>
                     <div className="-ml-6 w-[calc(100%+1.5rem)] flex items-center justify-center py-6 px-4">
-                      <img
-                        src={track.img}
-                        className="max-h-56 w-auto mx-auto object-contain rounded-sm drop-shadow-md"
-                        alt={track.alt}
-                      />
+                      <div className="relative max-h-56 w-full aspect-video">
+                        <Image
+                          src={track.img}
+                          alt={track.alt}
+                          fill
+                          className="object-contain rounded-sm drop-shadow-md"
+                        />
+                      </div>
                     </div>
                   </div>
                 </li>
@@ -221,15 +225,16 @@ export default function Archives() {
                       : 'opacity-0 invisible scale-[1.05] translate-y-8'
                     }`}
                 >
-                  <div className="relative w-full h-full flex items-center justify-center">
-                    <img
-                      src={track.img}
-                      className="w-full h-full object-contain select-none pointer-events-none drop-shadow-2xl rounded-sm"
-                      alt={track.alt}
-                    />
-                    {/* Subtle "screen" glare reflection */}
-                    <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none rounded-sm"></div>
-                  </div>
+                    <div className="relative w-full h-full flex items-center justify-center">
+                      <Image
+                        src={track.img}
+                        alt={track.alt}
+                        fill
+                        className="object-contain select-none pointer-events-none drop-shadow-2xl rounded-sm"
+                      />
+                      {/* Subtle "screen" glare reflection */}
+                      <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none rounded-sm"></div>
+                    </div>
                 </div>
               );
             })}
