@@ -40,22 +40,19 @@ export const caseStudies: CaseStudyType[] = [
     project_link: "https://obsidius.app",
   },
   {
-    main_image_src: "/projects/insight2.webp",
+    main_image_src: "/projects/hostel-erp.webp",
     project_title: "Website of Insight Cultural event",
     logo_src: "",
     description:
-      "The sports points table of insight where all departments compete to get the sports trophy.",
+      "Unified room management, fee tracking, and attendance monitoring — built for institutions serious about modernizing their hostel administration.",
     features: [
       "INSIGHT, the annual college extravaganza aimed at developing cultural talents of the students. It provides a platform for creative and innovative display of talent. INSIGHT brings together students from all departments to celebrate creativity, talent, and spirit of competition.",
       "It's a spectacular showcase of cultural performances, sports events, and celebrations that define our college community.",
     ],
     case_study_link: "#",
-    name: "Insight",
+    name: "TNPS Hostel ERP",
     demo_images: [
-      "/projects/insight1.webp",
-      "/projects/insight2.webp",
-      "/projects/insight3.webp",
-      "/projects/insight4.webp",
+      "/projects/hostel-erp.webp",
     ],
   },
   {
@@ -109,6 +106,7 @@ export const caseStudies: CaseStudyType[] = [
 
 export default function Archives() {
   const [activeTrack, setActiveTrack] = useState(0);
+  const [mobileExpanded, setMobileExpanded] = useState<number | null>(null);
 
   const tracks = caseStudies.map((project, index) => ({
     id: index,
@@ -141,34 +139,55 @@ export default function Archives() {
               return (
                 <li
                   key={track.id}
-                  className={`py-6 flex items-center gap-6 group cursor-pointer border-b border-black/10 transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${isActive
+                  className={`py-6 flex flex-col cursor-pointer border-b border-black/10 transition-all duration-[400ms] ease-[cubic-bezier(0.16,1,0.3,1)] group ${isActive
                       ? 'pl-6 border-cherry bg-cherry/[0.02]'
                       : 'hover:pl-6 hover:border-cherry hover:bg-cherry/[0.02]'
                     }`}
                   onMouseEnter={() => setActiveTrack(track.id)}
+                  onClick={() => setMobileExpanded(mobileExpanded === track.id ? null : track.id)}
                 >
-                  <span className={`font-serif text-5xl font-light transition-colors duration-[400ms] ${isActive ? 'text-cherry/15' : 'text-ink/10 group-hover:text-cherry/15'
-                    }`}>
-                    {(track.id + 1).toString().padStart(2, '0')}
-                  </span>
-                  <div>
-                    <div className="flex items-center gap-3 mb-1 mt-1">
-                      <span className={`text-[9px] uppercase tracking-widest font-bold transition-colors ${isActive ? 'text-cherry' : 'text-muted group-hover:text-cherry'
-                        }`}>
-                        {track.side}
-                      </span>
-                      <span className={`w-4 h-[1px] transition-colors ${isActive ? 'bg-cherry/30' : 'bg-black/10 group-hover:bg-cherry/30'
-                        }`}></span>
-                      <span className={`text-[9px] uppercase tracking-widest font-bold transition-colors ${isActive ? 'text-cherry' : 'text-muted group-hover:text-cherry'
-                        }`}>
-                        {track.year}
-                      </span>
-                    </div>
-                    <h3 className={`font-sans font-bold text-xl transition-colors duration-[400ms] ${isActive ? 'text-cherry' : 'text-ink group-hover:text-cherry'
+                  {/* Row: number + text */}
+                  <div className="flex items-center gap-6">
+                    <span className={`font-serif text-5xl font-light transition-colors duration-[400ms] ${isActive ? 'text-cherry/15' : 'text-ink/10 group-hover:text-cherry/15'
                       }`}>
-                      {track.title}
-                    </h3>
-                    <p className="text-muted text-sm mt-1">{track.desc}</p>
+                      {(track.id + 1).toString().padStart(2, '0')}
+                    </span>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-3 mb-1 mt-1">
+                        <span className={`text-[9px] uppercase tracking-widest font-bold transition-colors ${isActive ? 'text-cherry' : 'text-muted group-hover:text-cherry'
+                          }`}>
+                          {track.side}
+                        </span>
+                        <span className={`w-4 h-[1px] transition-colors ${isActive ? 'bg-cherry/30' : 'bg-black/10 group-hover:bg-cherry/30'
+                          }`}></span>
+                        <span className={`text-[9px] uppercase tracking-widest font-bold transition-colors ${isActive ? 'text-cherry' : 'text-muted group-hover:text-cherry'
+                          }`}>
+                          {track.year}
+                        </span>
+                      </div>
+                      <h3 className={`font-sans font-bold text-xl transition-colors duration-[400ms] ${isActive ? 'text-cherry' : 'text-ink group-hover:text-cherry'
+                        }`}>
+                        {track.title}
+                      </h3>
+                      <p className="text-muted text-sm mt-1">{track.desc}</p>
+                    </div>
+                    {/* Mobile chevron */}
+                    <span className={`lg:hidden text-muted transition-transform duration-300 ${mobileExpanded === track.id ? 'rotate-180 text-cherry' : ''}`}>
+                      ▾
+                    </span>
+                  </div>
+
+                  {/* Mobile inline image dropdown */}
+                  <div className={`lg:hidden overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                    mobileExpanded === track.id ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'
+                  }`}>
+                    <div className="-ml-6 w-[calc(100%+1.5rem)] flex items-center justify-center py-6 px-4">
+                      <img
+                        src={track.img}
+                        className="max-h-56 w-auto mx-auto object-contain rounded-sm drop-shadow-md"
+                        alt={track.alt}
+                      />
+                    </div>
                   </div>
                 </li>
               );
@@ -182,7 +201,7 @@ export default function Archives() {
           </div>
         </div>
 
-        <div className="col-span-1 lg:col-span-7 fi relative aspect-square md:aspect-[4/3] lg:aspect-[1.5] w-full flex items-center justify-center">
+        <div className="col-span-1 lg:col-span-7 fi relative aspect-square md:aspect-[4/3] lg:aspect-[1.5] w-full hidden lg:flex items-center justify-center">
 
           <div className="absolute -right-20 top-1/2 -translate-y-1/2 z-0 hidden lg:block opacity-40 mix-blend-multiply">
             <Vinyl size={400} className="w-[600px] h-[600px]" speed={12} />
