@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState, useEffect, useCallback } from 'react'
+import Image from 'next/image'
 
 interface ImageCarouselProps {
   images: string[];
@@ -58,10 +59,11 @@ const ImageCarousel: React.FC<ImageCarouselProps> = ({
                 : 'opacity-0 scale-105 pointer-events-none'
             }`}
           >
-            <img
+            <Image
               src={image}
               alt={`Project Slide ${index + 1}`}
-              className={`w-full h-full ${imageFit === 'cover' ? 'object-cover' : 'object-contain'} select-none`}
+              fill
+              className={`${imageFit === 'cover' ? 'object-cover' : 'object-contain'} select-none`}
             />
             {/* Subtle Overlay */}
             <div className="absolute inset-0 bg-ink/5 pointer-events-none"></div>

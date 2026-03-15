@@ -7,11 +7,9 @@ import Vinyl from '@/components/ui/Vinyl'
 function TurntablePanel({
     speed = 10,
     flip = false,
-    isActive = false,
 }: {
     speed?: number;
     flip?: boolean;
-    isActive?: boolean;
 }) {
     const PLATTER = 280
     const VINYL = 240
@@ -225,7 +223,7 @@ export default function Tracklist() {
                         </div>
                         <div className="fi relative bg-ink/[0.01] overflow-hidden min-h-[300px] lg:min-h-full border border-black/5 lg:border-l-0 gatefold-shadow-reverse border-t-0 lg:border-t p-4 md:p-8">
                             <div className="absolute inset-0 paper-texture opacity-30 pointer-events-none mix-blend-multiply"></div>
-                            <TurntablePanel speed={10} flip={false} isActive={activeCard === 1} />
+                            <TurntablePanel speed={10} flip={false} />
                         </div>
                     </article>
 
@@ -261,7 +259,7 @@ export default function Tracklist() {
                         </div>
                         <div className="fi relative bg-ink/[0.01] overflow-hidden min-h-[300px] lg:min-h-full border border-black/5 lg:border-r-0 gatefold-shadow border-t-0 p-4 md:p-8 lg:order-1 lg:border-t">
                             <div className="absolute inset-0 paper-texture opacity-30 pointer-events-none mix-blend-multiply"></div>
-                            <TurntablePanel speed={16} flip={true} isActive={activeCard === 2} />
+                            <TurntablePanel speed={16} flip={true} />
                         </div>
                     </article>
 
@@ -297,7 +295,7 @@ export default function Tracklist() {
                         </div>
                         <div className="fi relative bg-ink/[0.01] overflow-hidden min-h-[300px] lg:min-h-full border border-black/5 lg:border-l-0 gatefold-shadow-reverse border-t-0 p-4 md:p-8 lg:border-t">
                             <div className="absolute inset-0 paper-texture opacity-30 pointer-events-none mix-blend-multiply"></div>
-                            <TurntablePanel speed={12} flip={false} isActive={activeCard === 3} />
+                            <TurntablePanel speed={12} flip={false} />
                         </div>
                     </article>
 
